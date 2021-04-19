@@ -1,0 +1,25 @@
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        '''
+        output = [i for i in s]
+        length = int(len(output)/2)
+        list_1 = output[:length]
+        list_2 = output[length:]
+        #print(list_2)
+        count_1 = 0
+        count_2 = 0
+        for i in list_1:
+            if(i.lower()=='a' or i.lower()=='e' or i.lower()=='o' or i.lower()=='u' or i.lower()=='i'):
+                count_1+=1
+        for i in list_2:
+            if(i.lower()=='a' or i.lower()=='e' or i.lower()=='o' or i.lower()=='u'or i.lower()=='i'):
+                count_2+=1
+        if count_1==count_2:
+            return True
+        else:
+            return False
+        '''
+        s1 = sum([s[:len(s)//2].count(vowel) for vowel in 'aeiouAEIOU'])
+        s2 = sum([s[len(s)//2:len(s)].count(vowel) for vowel in 'aeiouAEIOU'])
+        #print(s1, s2)
+        return s1==s2

@@ -1,0 +1,8 @@
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        from collections import Counter
+        #print(Counter(nums1))
+        #print(Counter(nums2))
+        #print(((Counter(nums1) & (Counter(nums2)))))
+        #print(list((Counter(nums1) & (Counter(nums2))).elements()))
+        return (Counter(nums1) & Counter(nums2)).elements()

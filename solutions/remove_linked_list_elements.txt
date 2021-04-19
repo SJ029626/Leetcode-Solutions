@@ -1,0 +1,37 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        #a = []
+        #b="{}".format(head.val)
+        if not head:
+            return head
+        '''
+        if(head.next!=None):
+            self.removeElements(head.next, val)
+        '''
+        head.next=self.removeElements(head.next,val)
+        if head.val==val:
+            return head.next
+        return head
+        '''
+        if head.val!=val:
+            a = head.val 
+        return head.val
+        '''
+        #return b
+        #self.joinelements(head.val)
+        #if(head.next!=None):
+        #    self.removeElements(head.next, val)
+        #    print(head.val)
+        #a.append(head.val)
+        #a = [self.removeElements(head.next, val) if head.val!=val]
+    '''
+    def joinelements(self, val)
+        a = []
+        a.append(val)
+        return a
+    '''

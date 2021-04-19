@@ -1,0 +1,31 @@
+import re
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        num_list = []
+        end_domains = []
+        main_domain = []
+        output_list = []
+        for i in cpdomains:
+            num_list.extend(re.findall('[0-9]+', i))
+        for i in cpdomains:
+            last_domains = i.split('.')[-1]
+            end_domains.append(last_domains)
+        tld = list((set(end_domains)))
+        for i in cpdomains:
+            domain_partition =  i.partition('.')[-1]            
+            if domain_partition in tld:
+                continue
+            else:
+                main_domain.append(domain_partition)
+        main_d = list(set(main_domain))
+        
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        ans = collections.Counter()
+        for domain in cpdomains:
+            count, domain = domain.split()
+            count = int(count)
+            frags = domain.split('.')
+            for i in range(len(frags)):
+                ans[".".join(frags[i:])] += count
+        return ["{} {}".format(ct, dom) for dom, ct in ans.items()]

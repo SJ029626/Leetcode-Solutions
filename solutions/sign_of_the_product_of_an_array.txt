@@ -1,0 +1,10 @@
+import math
+class Solution:
+    def arraySign(self, nums: List[int]) -> int:
+        x = (math.prod(nums))
+        if x < 0:
+            return -1
+        elif x > 0:
+            return 1
+        elif x==0:
+            return 0

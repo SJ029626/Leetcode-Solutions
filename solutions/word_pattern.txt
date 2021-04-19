@@ -1,0 +1,21 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        s_list = s.split(' ')
+        dict1 = {}
+        dict2 = {}
+        
+        if len(pattern)!=len(s_list): # handling special case
+            return False
+        
+        for k, word in zip(pattern, s_list):
+            if k not in dict1 and word not in dict2:
+                dict1[k] = word
+                dict2[word] = k
+            else:
+                if (k in dict1 and word in dict2) and (dict1[k] == word and dict2[word] == k):
+                    continue
+                else:
+                    return False
+                    
+        return True
+        

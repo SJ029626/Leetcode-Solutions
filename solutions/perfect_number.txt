@@ -1,0 +1,30 @@
+import math
+class Solution:
+    def checkPerfectNumber(self, num: int) -> bool:
+        val = []
+        i = 1
+        while i<=num:
+            if(num%i==0):
+                val.append(i)
+            else:
+                i += 1
+                num = num/i
+        print(val)
+
+class Solution:
+    def checkPerfectNumber(self, num: int) -> bool:
+        if num <= 1:
+            return False
+        divisor_sum = 1
+        for d in range(2, int(num**0.5)+1):
+            q, m = divmod(num, d)
+            print(d, num)
+            print(q,m)
+            if m == 0:
+                divisor_sum += d + q
+                print(divisor_sum)
+            if num == d*d:
+                divisor_sum -= d
+                print(divisor_sum)
+                
+        return divisor_sum == num

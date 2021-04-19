@@ -1,0 +1,20 @@
+'''
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        #https://leetcode.com/problems/sort-array-by-increasing-frequency/discuss/1065249/Python-3-solution-with-process-of-thinking-and-improvement
+        s = Counter(nums).most_common()
+        #print(r)
+        s.sort(key = lambda x: x[0], reverse=True)
+        #print(r)
+        s.sort(key = lambda x: x[1])
+        #print(r)
+        final_output = []
+        for i in s:
+            a, b = i
+            final_output.extend([a]*b)
+        return final_output
+'''
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        final = Counter(nums)
+        return sorted(nums, key=lambda x: (final[x], -x))

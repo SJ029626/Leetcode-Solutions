@@ -1,0 +1,27 @@
+class Solution:
+    def thousandSeparator(self, n: int) -> str:
+        '''
+        n = str(n)
+        last = n[-1]
+        val = []
+        count=0
+        for i in range(0, len(n)-1):
+            count+=1
+            if(count%3==0 and n[i+1]!=None):
+                val.append(n[i])
+                val.append('.')
+            else:
+                val.append(n[i])
+        output = "".join(val)
+        #print(output)
+        #return (output+last)
+        '''
+        n = str(n)
+        result = []
+        for i, c in enumerate(n):
+            if i and (len(n) - i) % 3 == 0:
+                result.append('.')            
+                
+            result.append(c)
+            
+        return "".join(result)

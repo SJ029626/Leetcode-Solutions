@@ -1,0 +1,7 @@
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        split_list = s.split()
+        if len(split_list) == 0:
+            return 0
+        else:
+            return len(split_list[-1])

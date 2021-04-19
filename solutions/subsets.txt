@@ -1,0 +1,19 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        #from itertools import combinations
+        #d = [1]*(len(nums)+1)
+        #for i in nums:
+        #    print(accumulate(i))
+        array = []
+        for size in range(len(nums)+1):
+            value = combinations(nums, size)
+            for i in value:
+                array.append(list(i))
+        return array
+        '''
+        array = [[]]
+        for num in nums:
+            array += [[num]+r for r in array]
+            #print(array)
+        return array
+        '''

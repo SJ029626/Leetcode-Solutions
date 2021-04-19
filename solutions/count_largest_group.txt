@@ -1,0 +1,27 @@
+class Solution:
+    def countLargestGroup(self, n: int) -> int:
+        '''
+        from collections import Counter
+        ans = []
+        for i in range(1,n+1):
+            ans += [i%10]
+            print(ans)
+        result = Counter(ans)
+        a=[i for i in result.values()]
+        print(a)
+        if n<9:
+            return a.count(max(a))
+        else:
+            return a.count(max(a))+1
+        '''
+        dict1={}
+        for i in range(1,n+1):
+            s=sum([int(k) for k in str(i)])
+            if s in dict1:
+                dict1[s].append(i)
+            else:
+                dict1[s]=[i]
+        print(dict1)
+        a=[len(i) for i in dict1.values()]
+        return a.count(max(a))
+        
