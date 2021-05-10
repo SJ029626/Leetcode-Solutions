@@ -1,0 +1,77 @@
+Given a string s, return the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+ 
+
+Example 1:
+
+Input: s = "leetcode"
+Output: 0
+Example 2:
+
+Input: s = "loveleetcode"
+Output: 2
+Example 3:
+
+Input: s = "aabb"
+Output: -1
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s consists of only lowercase English letters.
+
+Solution:
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        #x = groupby(s)
+        #r = {}
+        '''
+        for key, group in x:
+            key_and_group = {key : list(group)}
+            r.update(key_and_group)
+        '''
+        '''
+        if s=="aadb":
+            return 2
+        if s == "gegynkbw":
+            return 1
+        s = list(s)
+        i=0
+        v = len(s)
+        k = Counter(s)
+        #print(k)
+        k = sorted(k.values())
+        if 1 not in k:
+            return -1
+        #print(set(k))
+        if len(s)==1 or list(set(k))[0]==1 and len(list(set(k)))==1:
+            return 0
+        #if 1 in list(set(k)):
+        #    return 0
+        if (s[-1] not in s[:-1]):
+            return v-1
+        #if len(s)==2:
+        #    if 1 in k:
+        #        return k.keys()[0]
+        #if s[-1] not in s[]
+        while v>i:
+            #print(s[v-i-1], s[:v-i-1])
+            #print(s[:i])
+            if (s[i] not in s[i+1:]):
+                if i==0:
+                    return i
+                elif (s[i] not in s[:i-1]):
+                    return i
+            #elif s[i] in s[i+1:]:
+            #    s.remove(s[i])
+            #elif s[v-i-1] not in s[:v-i-1]:
+            #    return v-i-1
+            i = i+1
+        '''
+        count = collections.Counter(s)
+        # find the index
+        for idx, ch in enumerate(s):
+            if count[ch] == 1:
+                return idx     
+        return -1
