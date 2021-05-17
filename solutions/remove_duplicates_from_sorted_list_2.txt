@@ -1,0 +1,70 @@
+Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,3,4,4,5]
+Output: [1,2,5]
+Example 2:
+
+
+Input: head = [1,1,1,2,3]
+Output: [2,3]
+ 
+
+Constraints:
+
+The number of nodes in the list is in the range [0, 300].
+-100 <= Node.val <= 100
+The list is guaranteed to be sorted in ascending order.
+
+Solution:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    '''
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        temp = head
+        ans = []
+        if head is None:
+            return head
+        while temp and temp.next:
+            if temp.next.val == temp.val:
+                temp.next =temp.next.next
+                ans.append(temp.val)
+            else:
+                temp = temp.next
+        curr = head
+        j = list(set(ans))
+        while curr and curr.next:
+            if curr.next.next is None and curr.next.val in j:
+                curr.next = curr.next.next
+            elif curr.val in j:
+                curr.val = curr.next.val
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+                curr.next = curr.next
+        return head if head.next.val not in j else head.next
+        #h = (1,2,3)
+        #a = ListNode(h)
+        #print(a)
+        class Solution(object):
+    '''
+    def deleteDuplicates(self, head):
+        result = tail = ListNode(None)
+        while head:
+            while head.next and head.val == head.next.val:
+                head = head.next
+                if not head.next or head.val != head.next.val:
+                    break
+            else:
+                tail.next, tail = head, head
+            head = head.next
+        tail.next = None
+        return result.next
