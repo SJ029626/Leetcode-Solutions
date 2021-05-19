@@ -1,0 +1,50 @@
+Given the head of a linked list, rotate the list to the right by k places.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+Example 2:
+
+
+Input: head = [0,1,2], k = 4
+Output: [2,0,1]
+ 
+
+Constraints:
+
+The number of nodes in the list is in the range [0, 500].
+-100 <= Node.val <= 100
+0 <= k <= 2 * 109
+
+Solution:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        #O(n) time, O(n) space
+        a= []
+        temp = head
+        while temp:
+            a.append(temp.val)
+            temp = temp.next
+        
+        if not a: return None
+		# step is in range [0, len(arr)]  
+        step = k % len(a)
+        # do rotation in array then create new linkedList accordingly
+        for _ in range(step):
+            val = a.pop()
+            a.insert(0,val)
+        res = temp2 = ListNode(0)
+        for i in a:
+            node = ListNode(i)
+            temp2.next = node
+            temp2 = temp2.next
+        return res.next
