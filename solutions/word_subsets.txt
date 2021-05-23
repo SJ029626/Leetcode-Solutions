@@ -1,0 +1,97 @@
+We are given two arrays words1 and words2 of words.  Each word is a string of lowercase letters.
+
+Now, say that word b is a subset of word a if every letter in b occurs in a, including multiplicity.  For example, "wrr" is a subset of "warrior", but is not a subset of "world".
+
+Now say a word a from words1 is universal if for every b in words2, b is a subset of a. 
+
+Return a list of all universal words in words1.  You can return the words in any order.
+
+ 
+
+Example 1:
+
+Input: words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["e","o"]
+Output: ["facebook","google","leetcode"]
+Example 2:
+
+Input: words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["l","e"]
+Output: ["apple","google","leetcode"]
+Example 3:
+
+Input: words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["e","oo"]
+Output: ["facebook","google"]
+Example 4:
+
+Input: words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["lo","eo"]
+Output: ["google","leetcode"]
+Example 5:
+
+Input: words1 = ["amazon","apple","facebook","google","leetcode"], words2 = ["ec","oc","ceo"]
+Output: ["facebook","leetcode"]
+ 
+
+Note:
+
+1 <= words1.length, words2.length <= 10000
+1 <= words1[i].length, words2[i].length <= 10
+words1[i] and words2[i] consist only of lowercase letters.
+All words in words1[i] are unique: there isn't i != j with words1[i] == words1[j].
+
+Solution:
+class Solution:
+    def wordSubsets(self, A: List[str], B: List[str]) -> List[str]:
+        #https://leetcode.com/problems/word-subsets/discuss/175854/JavaC%2B%2BPython-Straight-Forward
+        count = Counter()
+        for b in B:
+            count |= Counter(b)
+        x = [a for a in A if not count - Counter(a)]
+        return x
+        '''
+        l = []
+        for i in words2:
+            l.extend([j for j in i])
+        p = dict(Counter(l))
+        res = []
+        for i in words1:
+            count2=0
+            count = 0
+            for j in words2:
+                n = dict(Counter(j))
+                for o in j:
+                    if o in i and i.count(o)>=n.get(o):
+                        count2+=1
+                    elif o not in i:
+                        count2-=1
+                if count2>=len(j):
+                    count+=1
+                    res.append(i)
+        return list(set(res))
+        '''     
+
+        '''
+        l = []
+        for i in words2:
+            l.extend([j for j in i])
+        x = dict(Counter(l))
+        res = []
+        for i in words1:
+            count = 0
+            v = dict(Counter(i))
+            print(v)
+            for key in x.keys():
+                if key in v.keys() and v[key]>=x[key]:
+                    count+=1
+                if count==len(x):
+                    print(i)
+            #if count>=len(words2):
+            #    res.append(i)
+        return res
+        '''
+        '''
+        for i in words1:
+            v = dict(Counter(i))
+            for key in x.keys():
+                if key in v.keys():
+                    if x.get(key)<=v.get(key):
+                        print(i.count(key))
+        '''
