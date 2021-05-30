@@ -1,0 +1,90 @@
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+
+ 
+
+Example 1:
+
+Input: s = "(()"
+Output: 2
+Explanation: The longest valid parentheses substring is "()".
+Example 2:
+
+Input: s = ")()())"
+Output: 4
+Explanation: The longest valid parentheses substring is "()()".
+Example 3:
+
+Input: s = ""
+Output: 0
+ 
+
+Constraints:
+
+0 <= s.length <= 3 * 104
+s[i] is '(', or ')'.
+
+Solution:
+class Solution:
+    def longestValidParentheses(self, s):
+        dp, stack = [0]*(len(s) + 1), []
+        for i in range(len(s)):
+            if s[i] == '(':
+                stack.append(i)
+            else:
+                if stack:
+                    p = stack.pop()
+                    dp[i + 1] = dp[p] + i - p + 1
+        return max(dp)
+        '''
+        l = []
+        track = []
+        count = 0
+        maxi = 0
+        for i in s:
+            if i=='(':
+                track.append(1)
+                l.append(i)
+            elif i==')':
+                if '(' in l:
+                    track.append(2)
+                    l.pop()
+                else:
+                    track.append(3)
+                    l.append(i)
+        if len(track)<2:
+            return 0
+        for i in range(len(track)-1):
+            if track[i]+1==2 and track[i+1]==2:
+                count+=2
+            elif track[i]-1==1 and track[i-1]==1:
+                continue
+            else:
+                maxi = max(count, maxi)
+                count = 0
+        maxi = max(count, maxi)
+        return maxi
+        #x = ""
+        #import re
+        #for i in track:
+        #    x+=str(i)
+        #print(x)
+        #for i in range(len(track)):
+        #    if track[i+1]==track[i]+1:
+        #        count+=2
+        #        r+=1
+        '''
+        '''
+        while len(track):
+            track = track[k:]
+            for i in range(len(track)):
+                if track[i]==1 and track[i+1]==2:
+                    k = 2
+                    m+=1
+                    if m>=1:
+                        count+=2
+                    break
+                else:
+                    m = 0
+                    k = 1
+                    break
+        '''
